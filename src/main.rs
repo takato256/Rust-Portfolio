@@ -21,4 +21,35 @@ use yew::html::Scope;
 // Routableのみyew-routerライブラリのトレイト
 #[derive(Routable, PartialEq, Eq, Clone, Debug)]
 
+// Webのパスを表す列挙型
+// #[at()]の部分はカスタムアノテーション
+pub enum Route{
+    #[at("/posts/:id")]
+    Post{id:u64},
+    #[at("/posts")]
+    Posts,
+    #[at("/authors/:id")]
+    Author{id:u64},
+    #[at("/authors")]
+    Authors,
+    #[at("/")]
+    Home,
+    #[not_found]
+    #[at("/404")]
+    NotFound,
+}
 
+pub enum Msg {
+    ToggleNavbar,
+}
+
+pub struct App{
+    navbar_active: bool,
+}
+
+impl Component for App {
+    type Message = Msg;
+    type Properties = ();
+
+    
+}
